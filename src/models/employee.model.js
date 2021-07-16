@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 
 const EmployeeModel = mongoose.Schema(
     {
-        FirstName: String,
-        LastName: String,
-        Designation: String,
-        Department: String,
-        Status: String,
-        Address: String,
-        Contact: String,
+        firstName: String,
+        lastName: String,
+        designation: String,
+        department: String,
+        employementStatus: String,
+        address: String,
+        contact: String,
     }
   );
   

@@ -4,6 +4,9 @@ const app = express()
 const port = process.env.PORT || 3006;
 const mongoose = require('mongoose');
 
+//Routes
+const employeeRoute = require("./src/routes/employee.router");
+const welcomePage = require("./src/routes/welcome.router");
 
 //Database connection
 mongoose.connect(
@@ -15,9 +18,6 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-//Routes
-const employeeRoute = require("./src/routes/employee.router");
-const welcomePage = require("./src/routes/welcome.router");
 
 // Register Router
 app.use('/api/employee', employeeRoute);

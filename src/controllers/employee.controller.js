@@ -1,8 +1,16 @@
 const Employee = require("../models/employee.model")
-module.exports.addEmployee = (req,res) => {
-    if (req.body.FirstName.trim().length === 0
-        || req.body.LastName.trim().length === 0
-        || req.body.Status.trim().length === 0
+module.exports.addEmployee = async (req,res) => {
+    let contact = req.body.Contact.trim()
+    contact = contact.replace(/ +/g, "");  //Remove white space between numbers
+    const checkIsNumberRagex = /^[0-9]{10}$/; //Ragex Condition
+    
+
+    if (req.body.FirstName.trim().length === 0 //Check Employee Name is empty or not
+        || req.body.LastName.trim().length === 0 //Check Employee Name is empty or not
+        || req.body.Status.trim().length === 0 //Check Employee status is empty or not
+        || !!await Employee.find({"Contact":contact}) //Check Employee already exist or not
+        || checkIsNumberRagex.test(contact) //Check contact number is of length 10 and does not contain any string
+        
     ) {
         res.sendStatus(406);
     }
@@ -14,7 +22,7 @@ module.exports.addEmployee = (req,res) => {
             Department: req.body.Department,
             Status: req.body.Status,
             Address: req.body.Address,
-            Contact: req.body.Contact,
+            Contact: contact,
         });
         newEmployee.save().then(() => console.log('1 Data Uploaded'));
         res.sendStatus(200);

@@ -13,6 +13,5 @@ const EmployeeModel = mongoose.Schema(
         leavingDate: Date
     }
   );
-  
   module.exports = mongoose.model("employee", EmployeeModel);
   

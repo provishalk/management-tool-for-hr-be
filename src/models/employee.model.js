@@ -9,8 +9,9 @@ const EmployeeModel = mongoose.Schema(
         employementStatus: String,
         address: String,
         contact: String,
+        joiningDate: Date,
+        leavingDate: Date
     }
   );
-  
   module.exports = mongoose.model("employee", EmployeeModel);
   
